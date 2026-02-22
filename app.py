@@ -11,6 +11,11 @@ def home():
     return render_template("index.html")
 # @app.route("/about")
 # def about():
+@app.route("/data")
+def show_data():
+    with open('Location.txt',"r") as f:
+        content=f.read()
+    return"<pre>" + content + "<pre>"
 @app.route("/collect",methods=["POST"])
 def collect():
     data=request.get_json(silent=True)
