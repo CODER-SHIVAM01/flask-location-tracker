@@ -25,6 +25,11 @@
 // }
 
 function getLoc(){
+    let name=document.getElementById("username").value;
+    if(name===""){
+        alert("Please Enter Your Name");
+        return;
+    }
     if(!navigator.geolocation){
         alert("Geolocation is not Suportted");
         return;

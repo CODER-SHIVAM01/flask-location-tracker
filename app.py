@@ -11,12 +11,16 @@ def home():
     return render_template("index.html")
 # @app.route("/about")
 # def about():
+@app.route("/collect",methods=["POST"])
 @app.route("/data")
 def show_data():
-    with open('Location.txt',"r") as f:
-        content=f.read()
+    try:
+        with open('Location.txt',"r") as f:
+            content=f.read()
+    except FileNotFoundError:
+        content="Not Data Found Yet."
     return"<pre>" + content + "<pre>"
-@app.route("/collect",methods=["POST"])
+        
 def collect():
     data=request.get_json(silent=True)
     lat=data["lat"]
@@ -26,6 +30,7 @@ def collect():
     headers={
         "User-Agent":"FlaskLocationApp"
     }
+
     response=requests.get(url,headers=headers)
     address=response.json().get("display_name","Address not found")
     print('Address :',address)
@@ -37,6 +42,7 @@ def collect():
     return {
         "Status": "Location Saved",
         'address':address}
+
 if __name__=="__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
