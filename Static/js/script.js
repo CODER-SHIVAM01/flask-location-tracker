@@ -84,12 +84,12 @@ function success(position){
         // console.log(data)
         // alert("Location sent...");
         // window.open(mapLink);
-        const mapUrl =
-            `https://www.google.com/maps?q=${latitude},${longitude}&output=embed`;
+        // const mapUrl =
+        //     `https://www.google.com/maps?q=${latitude},${longitude}&output=embed`;
 
-        const map = document.getElementById("map");
-        map.src = mapUrl;
-        map.style.display = "block";
+        // const map = document.getElementById("map");
+        // map.src = mapUrl;
+        // map.style.display = "block";
     })
     .catch(()=>{
     document.getElementById("address").innerText="Failed to fetch address";
@@ -97,5 +97,6 @@ function success(position){
 }
 
 function error(err){
+    console.error(err);
     alert("Location permission Denied");
 }
