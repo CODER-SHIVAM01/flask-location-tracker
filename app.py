@@ -7,10 +7,10 @@ import os
 app=Flask(__name__)
 @app.route("/")
 def home():
-    return "Hello! Flask is Working"
-@app.route("/about")
-def about():
+    # return "Hello! Flask is Working"
     return render_template("index.html")
+# @app.route("/about")
+# def about():
 @app.route("/collect",methods=["POST"])
 def collect():
     data=request.get_json(silent=True)
